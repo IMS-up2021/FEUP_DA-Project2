@@ -1,0 +1,3 @@
+C:/Users/LuisC/OneDrive/Ambiente de Trabalho/Faculdade/DA2/cmake-build-debug/CMakeFiles/DA2.dir
+C:/Users/LuisC/OneDrive/Ambiente de Trabalho/Faculdade/DA2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/LuisC/OneDrive/Ambiente de Trabalho/Faculdade/DA2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
