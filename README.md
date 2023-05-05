@@ -2,11 +2,11 @@
 
 ## Work Done By: 
 
-| GROUP  |  |
+| GROUP  | G06_4 |
 | ------------- | ------------- |
 | Luis Filipe Pinto Cunha  | up201709375@up.pt  |
-|  |   |
-|  |  |
+| Inês Martin Soares | up202108852@up.pt  |
+| Pedro Miguel Martins Romão  | up202108660@up.pt |
 
 _________________________________________________________________________________________
 
