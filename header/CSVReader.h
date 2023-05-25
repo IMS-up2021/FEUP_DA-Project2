@@ -24,8 +24,8 @@ private:
 
 public:
     CSVReader();
-    static void read_edges();
-    static void read_nodes();
+    static void read_edges(string &file);
+    static void read_nodes(string &file);
 
 };
 

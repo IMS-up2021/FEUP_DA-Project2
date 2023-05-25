@@ -6,12 +6,11 @@
 
 CSVReader::CSVReader()= default;;
 
-void CSVReader::populate() {
-    /*read_edges();
-    read_nodes();*/
+void CSVReader::polpulate() {
+
 }
 
-static void CSVReader::read_edges(const string &file,) {
+void CSVReader::read_edges(string &file) {
     ifstream in;
     in.open(file);
     static string line;
@@ -33,7 +32,7 @@ static void CSVReader::read_edges(const string &file,) {
     }
 }
 
-static void CSVReader::read_nodes(const string &file,){
+void CSVReader::read_nodes(string &file) {
     ifstream in;
     in.open(file);
     static string line;
@@ -51,6 +50,6 @@ static void CSVReader::read_nodes(const string &file,){
         getline(inputString, origin, ',');
         getline(inputString, dest, ',');
         getline(inputString, dist, ',');
-        //...
+        //...string &file
     }
 }
