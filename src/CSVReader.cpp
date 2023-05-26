@@ -11,6 +11,7 @@ void CSVReader::read_TG(const string& file, Graph* graph) {
     in.open(file);
     static string line;
     getline(in, line);
+    int counter = 0;
 
     while (getline(in, line)) {
         string origStr;
@@ -27,9 +28,9 @@ void CSVReader::read_TG(const string& file, Graph* graph) {
         int dest = stoi(destStr);
         float dist = stof(distStr);
 
-        graph->addEdge(orig, dest, dist);
+        Graph edge(orig, dest, dist);
+        graph->addTwoWayEdge(edge);
     }
-
     in.close();
 }
 
