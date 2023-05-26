@@ -6,50 +6,67 @@
 
 CSVReader::CSVReader()= default;;
 
-void CSVReader::polpulate() {
-
-}
-
-void CSVReader::read_edges(string &file) {
+void CSVReader::read_TG(const string& file, Graph* graph) {
     ifstream in;
     in.open(file);
     static string line;
     getline(in, line);
-    int counter = 1;
-    unordered_map<string, int> hashTable;
 
     while (getline(in, line)) {
-        string origin;
-        string dest;
-        string dist;
+        string origStr;
+        string destStr;
+        string distStr;
 
         stringstream inputString(line);
 
-        getline(inputString, origin, ',');
-        getline(inputString, dest, ',');
-        getline(inputString, dist, ',');
-        //...
+        getline(inputString, origStr, ',');
+        getline(inputString, destStr, ',');
+        getline(inputString, distStr, ',');
+
+        int orig = stoi(origStr);
+        int dest = stoi(destStr);
+        float dist = stof(distStr);
+
+        graph->addEdge(orig, dest, dist);
     }
+
+    in.close();
 }
 
-void CSVReader::read_nodes(string &file) {
+void CSVReader::read_RWG(const string& file, Graph* graph) {
     ifstream in;
     in.open(file);
     static string line;
     getline(in, line);
-    int counter = 1;
-    unordered_map<string, int> hashTable;
 
     while (getline(in, line)) {
-        string origin;
-        string dest;
-        string dist;
+        string origStr;
+        string destStr;
+        string distStr;
 
         stringstream inputString(line);
 
-        getline(inputString, origin, ',');
-        getline(inputString, dest, ',');
-        getline(inputString, dist, ',');
-        //...string &file
+        getline(inputString, origStr, ',');
+        getline(inputString, destStr, ',');
+        getline(inputString, distStr, ',');
+
+        int orig = stoi(origStr);
+        int dest = stoi(destStr);
+        double dist = stod(distStr);
+
+        Vertex* origVertex = graph->getVertex(orig);
+        if (origVertex == nullptr) {
+            origVertex = new Vertex(orig);
+            graph->addVertex(origVertex);
+        }
+        Vertex* destVertex = graph->getVertex(dest);
+        if (destVertex == nullptr) {
+            destVertex = new Vertex(dest);
+            graph->addVertex(destVertex);
+        }
+
+        Edge* edge = origVertex->addEdge(destVertex, dist);
     }
+
+    in.close();
 }

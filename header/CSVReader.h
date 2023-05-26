@@ -14,18 +14,16 @@
 #include <unordered_map>
 #include <vector>
 #include <algorithm>
+#include ""../src/Graph.cpp"
 
 using namespace std;
 
 
 class CSVReader {
-private:
-    void polpulate();
-
 public:
     CSVReader();
-    static void read_edges(string &file);
-    static void read_nodes(string &file);
+    static void read_TG(string &file, Graph* graph);
+    static void read_RWG(string &file, Graph* graph);
 
 };
 

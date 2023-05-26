@@ -4,4 +4,4 @@ project(DA2)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(DA2
-        src/main.cpp src/menu.cpp src/CSVReader.cpp header/CSVReader.h)
+        src/main.cpp src/menu.cpp src/CSVReader.cpp header/CSVReader.h src/Graph.cpp header/Graph.h)
