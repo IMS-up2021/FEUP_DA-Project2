@@ -78,3 +78,37 @@ int tspBacktrackingWrapper(const Graph& graph){
 
     return minCost;
 }
+
+void tspTriangularApproximation(const Graph& graph) {
+    int numVertices = graph.getNumVertices();
+
+    std::vector<bool> visited(numVertices, false);
+    visited[0] = true;
+
+    int currVertex = 0;
+    int nextVertex = 0;
+    int minDistance = std::numeric_limits<int>::max();
+    int totalCost = 0;
+
+    std::cout << "Tour: " << currVertex << " -> ";
+
+    for (int i = 0; i < numVertices - 1; i++) {
+        for (int j = 0; j < numVertices; j++) {
+            if (!visited[j] && graph.getWeight(currVertex, j) < minDistance) {
+                minDistance = graph.getWeight(currVertex, j);
+                nextVertex = j;
+            }
+        }
+
+        std::cout << nextVertex << " -> ";
+        visited[nextVertex] = true;
+        totalCost += minDistance;
+        currVertex = nextVertex;
+        minDistance = std::numeric_limits<int>::max();
+    }
+    
+    totalCost += graph.getWeight(currVertex, 0);
+    std::cout << "0" << std::endl;
+
+    std::cout << "Total Cost: " << totalCost << std::endl;
+}
