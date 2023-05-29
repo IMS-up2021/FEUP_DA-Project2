@@ -5,16 +5,15 @@
 #ifndef DA2_CSVREADER_H
 #define DA2_CSVREADER_H
 
-
+#include <iostream>
 #include <fstream>
 #include <sstream>
-#include <queue>
+#include <vector>
+#include <unordered_set>
 #include <string>
-#include <list>
-#include <unordered_map>
 #include <vector>
 #include <algorithm>
-#include ""../src/Graph.cpp"
+#include "Graph.h"
 
 using namespace std;
 
@@ -22,7 +21,7 @@ using namespace std;
 class CSVReader {
 public:
     CSVReader();
-    static void read_TG(string &file, Graph* graph);
+    static void read_TG(string file, Graph* graph);
     static void read_RWG(string &file, Graph* graph);
 
 };

@@ -1,48 +1,53 @@
 //
 // Created by nesma on 26/05/2023.
 //
-
+#include <bits/stdc++.h>
 #include "../header/Graph.h"
+using namespace std;
+Graph::Graph(int nodes) : numNodes(nodes), adjencyMatrix(nodes, vector<float>(nodes, 0.0)) {}
 
-Graph::Graph() = default;
-
-Graph::Graph(int orig, int dest, float dist) : orig(orig), dest(dest), dist(dist) { }
-
-Graph::Graph(int n) : numVertices(n), adjacencyMatrix(n, vector<int>(n, 0)) { }
 
 void Graph::addEdge(int src, int dest, int dist) {
-    adjacencyMatrix[src][dest] = dist;
-    adjacencyMatrix[dest][src] = dist;
+    adjencyMatrix[src][dest] = dist;
+    adjencyMatrix[dest][src] = dist;
 }
 
-void Graph::addTwoWayEdge(const Graph& edge) {
-    twEdges.push_back(edge);
-}
+// Function to find the minimum weight Hamiltonian Cycle
+void Graph::tsp(vector<bool>& v, int currPos,
+         int n, int count, int cost, float & ans)
+{
 
-int Graph::getNumVertices() const {
-    return numVertices;
-}
+    // If last node is reached and it has a link
+    // to the starting node i.e the source then
+    // keep the minimum value out of the total cost
+    // of traversal and "ans"
+    // Finally return to check for more possible values
+    if (count == n && adjencyMatrix[currPos][0]) {
+        float helper = (cost + adjencyMatrix[currPos][0]);
+        ans = min(ans,  helper);
 
-int Graph::setNumVertices() const {
-    return twEdges.size();
-}
+        return;
+    }
 
-vector<Graph>& Graph::getEdges() {
-    return twEdges;
-}
+    // BACKTRACKING STEP
+    // Loop to traverse the adjacency list
+    // of currPos node and increasing the count
+    // by 1 and cost by adjencyMatrix[currPos][i] value
+    for (int i = 0; i < n; i++) {
+        if (!v[i] && adjencyMatrix[currPos][i]) {
 
-int Graph::getOrigin() const {
-    return orig;
-}
+            // Mark as visited
+            v[i] = true;
+            tsp( v, i, n, count + 1,
+                cost + adjencyMatrix[currPos][i], ans);
 
-int Graph::getDestination() const {
-    return dest;
-}
+            // Mark ith node as unvisited
+            v[i] = false;
+        }
+    }
+};
 
-float Graph::getDistance() const {
-    return dist;
-}
-
+/*
 void tspBacktracking(const Graph& graph, vector<int>& path, vector<bool>& visited, int currVertex, int& minCost, int& numIterations){
     int num Vertices = graph.getNumVertices();
 
@@ -60,9 +65,9 @@ void tspBacktracking(const Graph& graph, vector<int>& path, vector<bool>& visite
             visited[nextVertex] = false;
         }
     }
-}
+}*/
 
-int tspBacktrackingWrapper(const Graph& graph){
+/*int tspBacktrackingWrapper(const Graph& graph){
     int numVertices = graph.getNumVertices();
     vector<int> path(numVertices, 0);
     vector<bool> visited(numVertices, false),
@@ -77,8 +82,8 @@ int tspBacktrackingWrapper(const Graph& graph){
     cout << "Number of Iterations: " << numIterations << endl;
 
     return minCost;
-}
-
+}*/
+/*
 void tspTriangularApproximation(const Graph& graph) {
     int numVertices = graph.getNumVertices();
 
@@ -111,4 +116,21 @@ void tspTriangularApproximation(const Graph& graph) {
     std::cout << "0" << std::endl;
 
     std::cout << "Total Cost: " << totalCost << std::endl;
+}*/
+int Graph::getNumNodes() const {
+    return numNodes;
 }
+
+void Graph::setNumNodes(int numNodes) {
+    Graph::numNodes = numNodes;
+}
+
+const vector<vector<float>> &Graph::getAdjencyMatrix() const {
+    return adjencyMatrix;
+}
+
+void Graph::setAdjencyMatrix(const vector<vector<float>> &adjacencyMatrix) {
+    Graph::adjencyMatrix = adjacencyMatrix;
+}
+
+

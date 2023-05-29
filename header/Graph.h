@@ -10,26 +10,34 @@
 #include <algorithm>
 #include <chrono>
 
+using namespace std;
 class Graph {
 private:
-    int orig;
-    int dest;
-    float dist;
-    vector<Graph> twEdges;
-    int numVertices;
-    vector<vector<int>> adjacencyMatrix;
+
+    int numNodes;
+    vector<vector<float >> adjencyMatrix;
 
 public:
-    Graph();
-    Graph(int orig, int dest, float dist);
-    Graph(int n);
-    void addEdge(const Graph edge);
-    void addTwoWayEdge(const Graph& edge);
+    int getNumNodes() const;
+
+    void setNumNodes(int numNodes);
+
+    const vector<vector<float>> &getAdjencyMatrix() const;
+
+    void setAdjencyMatrix(const vector<vector<float>> &adjacencyMatrix);
+
+    explicit Graph(int numNodes);
+
+    void addEdge(int src, int dest, int dist);
+
+    void tsp(vector<bool>& v, int currPos,
+                    int n, int count, int cost, float & ans);
+    /*void addTwoWayEdge(const Graph& edge);
     int getNumVertices() const;
     vector<Graph>& getEdges();
     int getOrigin() const;
     int getDestination() const;
-    float getDistance() const;
+    float getDistance() const;*/
 
 };
 

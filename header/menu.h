@@ -3,7 +3,8 @@
 
 void mainMenu();
 void Menu1();
-void Menu11();
+
+[[noreturn]] void Menu11();
 void Menu12();
 void Menu2();
 void Menu3();

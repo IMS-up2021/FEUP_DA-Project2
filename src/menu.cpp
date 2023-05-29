@@ -1,5 +1,7 @@
 #include <iostream>
+#include <climits>
 #include "../header/menu.h"
+#include "../header/CSVReader.h"
 
 using namespace  std;
 
@@ -76,7 +78,7 @@ void Menu1(){
                 Menu11();
                 break;
             case 2:
-                Menu12();
+                Menu11();
                 break;
             default:
                 cout << "Invalid Option! Please choose again." << endl;
@@ -85,11 +87,11 @@ void Menu1(){
     }
 }
 
-void Menu11(){
+[[noreturn]] void Menu11(){
     int op;
 
     cout << "+------------------------------------------------------------------------+" << endl;
-    cout << "|                      Reading the Data - Toy Graphs                      |" << endl;
+    cout << "|                      Reading the Data - Toy Graphs                     |" << endl;
     cout << "|                                Main Menu                               |" << endl;
     cout << "+------------------------------------------------------------------------+" << endl;
     cout << "|                                                                        |" << endl;
@@ -106,17 +108,41 @@ void Menu11(){
         switch (op) {
             case 0:
                 mainMenu();
+                break;
             case 1:
+            {
+                Graph graph = Graph(0);
+                CSVReader::read_TG("../data/TG/shipping.csv", &graph);
+                // Boolean array to check if a node
+                // has been visited or not
+                int n = graph.getNumNodes();
+                vector<bool> v(n);
+                for (int i = 0; i < n; i++)
+                    v[i] = false;
+
+                // Mark 0th node as visited
+                v[0] = true;
+                float ans = INT_MAX;
+
+                // Find the minimum weight Hamiltonian Cycle
+                graph.tsp( v, 0, n, 1, 0, ans);
+
+                // ans is the minimum weight Hamiltonian Cycle
+                cout << ans;
+            }
                 break;
             case 2:
+                // Handle case 2
                 break;
             case 3:
+                // Handle case 3
                 break;
             default:
                 cout << "Invalid Option! Please choose again." << endl;
                 break;
         }
     }
+
 }
 
 void Menu12(){

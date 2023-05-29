@@ -3,38 +3,65 @@
 //
 
 #include "../header/CSVReader.h"
+#include "../header/Graph.h"
 
 CSVReader::CSVReader()= default;;
 
-void CSVReader::read_TG(const string& file, Graph* graph) {
-    ifstream in;
-    in.open(file);
-    static string line;
-    getline(in, line);
-    int counter = 0;
+void CSVReader::read_TG(string fileString, Graph *graph) {
+    ifstream file(fileString);
+    string line;
 
-    while (getline(in, line)) {
-        string origStr;
-        string destStr;
-        string distStr;
+    // Skip the header line
+    getline(file, line);
 
-        stringstream inputString(line);
+    unordered_set<int> nodes;
+    int source, destination;
+    float distance;
 
-        getline(inputString, origStr, ',');
-        getline(inputString, destStr, ',');
-        getline(inputString, distStr, ',');
+    while (getline(file, line)) {
+        stringstream ss(line);
+        string token;
 
-        int orig = stoi(origStr);
-        int dest = stoi(destStr);
-        float dist = stof(distStr);
+        getline(ss, token, ',');
+        source = stoi(token);
 
-        Graph edge(orig, dest, dist);
-        graph->addTwoWayEdge(edge);
+        getline(ss, token, ',');
+        destination = stoi(token);
+
+        getline(ss, token, ',');
+        distance = stof(token);
+
+        nodes.insert(source);
+        nodes.insert(destination);
     }
-    in.close();
+
+    int numNodes = nodes.size();
+    *graph = Graph(numNodes);
+
+    file.clear();
+    file.seekg(0);  // Reset file pointer to read again from the beginning
+
+    // Skip the header line
+    getline(file, line);
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+        string token;
+
+        getline(ss, token, ',');
+        source = stoi(token);
+
+        getline(ss, token, ',');
+        destination = stoi(token);
+
+        getline(ss, token, ',');
+        distance = stof(token);
+
+        graph->addEdge(source, destination, distance);
+    }
 }
 
-void CSVReader::read_RWG(const string& file, Graph* graph) {
+/*void CSVReader::read_RWG(const string& file, Graph* graph) {
     ifstream in;
     in.open(file);
     static string line;
@@ -70,4 +97,4 @@ void CSVReader::read_RWG(const string& file, Graph* graph) {
     }
 
     in.close();
-}
+}*/
