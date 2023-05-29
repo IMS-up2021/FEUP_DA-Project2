@@ -11,8 +11,8 @@ Graph::Graph(int orig, int dest, float dist) : orig(orig), dest(dest), dist(dist
 Graph::Graph(int n) : numVertices(n), adjacencyMatrix(n, vector<int>(n, 0)) { }
 
 void Graph::addEdge(int src, int dest, int dist) {
-    adjacencyMatrix[src][dest] = weight;
-    adjacencyMatrix[dest][src] = weight;
+    adjacencyMatrix[src][dest] = dist;
+    adjacencyMatrix[dest][src] = dist;
 }
 
 void Graph::addTwoWayEdge(const Graph& edge) {
@@ -94,8 +94,8 @@ void tspTriangularApproximation(const Graph& graph) {
 
     for (int i = 0; i < numVertices - 1; i++) {
         for (int j = 0; j < numVertices; j++) {
-            if (!visited[j] && graph.getWeight(currVertex, j) < minDistance) {
-                minDistance = graph.getWeight(currVertex, j);
+            if (!visited[j] && graph.getDistance(currVertex, j) < minDistance) {
+                minDistance = graph.getDistance(currVertex, j);
                 nextVertex = j;
             }
         }
@@ -106,8 +106,8 @@ void tspTriangularApproximation(const Graph& graph) {
         currVertex = nextVertex;
         minDistance = std::numeric_limits<int>::max();
     }
-    
-    totalCost += graph.getWeight(currVertex, 0);
+
+    totalCost += graph.getDistance(currVertex, 0);
     std::cout << "0" << std::endl;
 
     std::cout << "Total Cost: " << totalCost << std::endl;
