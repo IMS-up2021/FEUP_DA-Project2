@@ -15,16 +15,16 @@ class Graph {
 private:
 
     int numNodes;
-    vector<vector<float >> adjencyMatrix;
+    vector<vector<float >> adjacencyMatrix;
 
 public:
     int getNumNodes() const;
 
     void setNumNodes(int numNodes);
 
-    const vector<vector<float>> &getAdjencyMatrix() const;
+    const vector<vector<float>> &getAdjacencyMatrix() const;
 
-    void setAdjencyMatrix(const vector<vector<float>> &adjacencyMatrix);
+    void setAdjacencyMatrix(const vector<vector<float>> &adjacencyMatrix);
 
     explicit Graph(int numNodes);
 
