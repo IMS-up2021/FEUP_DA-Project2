@@ -4,8 +4,24 @@
 #include <bits/stdc++.h>
 #include "../header/Graph.h"
 using namespace std;
+
 Graph::Graph(int nodes) : numNodes(nodes), adjencyMatrix(nodes, vector<float>(nodes, 0.0)) {}
 
+int Graph::getNumNodes() const {
+    return numNodes;
+}
+
+void Graph::setNumNodes(int numNodes) {
+    Graph::numNodes = numNodes;
+}
+
+const vector<vector<float>> &Graph::getAdjencyMatrix() const {
+    return adjencyMatrix;
+}
+
+void Graph::setAdjencyMatrix(const vector<vector<float>> &adjacencyMatrix) {
+    Graph::adjencyMatrix = adjacencyMatrix;
+}
 
 void Graph::addEdge(int src, int dest, int dist) {
     adjencyMatrix[src][dest] = dist;
@@ -46,6 +62,38 @@ void Graph::tsp(vector<bool>& v, int currPos,
         }
     }
 };
+
+//function of Triangular Approximation Heuristic
+vector<int> Graph::tspTriangularApproximation(const Graph& graph){
+    int numNodes = graph.getNumNodes();
+
+    vector<int> tour;
+    // Start and end at the node with zero-identifier label
+    tour.push_back(0);
+
+    vector <bool> visited(numNodes, false);
+    visited[0] = true;
+
+    while (tour.size() < numNodes) {
+        int current = tour.back();
+        int closest = -1;
+        float minDist = numeric_limits<float>::infinity();
+
+        for (int i = 0; i < numNodes; ++i) {
+            if (!visited[i] && graph.getAdjacencyMatrix()[current][i] < minDist) {
+                closest = i;
+                minDist = graph.getAdjacencyMatrix()[current][i];
+            }
+        }
+
+        tour.push_back(closest);
+        visited[closest] = true;
+    }
+
+    return tour;
+}
+
+
 
 /*
 void tspBacktracking(const Graph& graph, vector<int>& path, vector<bool>& visited, int currVertex, int& minCost, int& numIterations){
@@ -117,20 +165,3 @@ void tspTriangularApproximation(const Graph& graph) {
 
     std::cout << "Total Cost: " << totalCost << std::endl;
 }*/
-int Graph::getNumNodes() const {
-    return numNodes;
-}
-
-void Graph::setNumNodes(int numNodes) {
-    Graph::numNodes = numNodes;
-}
-
-const vector<vector<float>> &Graph::getAdjencyMatrix() const {
-    return adjencyMatrix;
-}
-
-void Graph::setAdjencyMatrix(const vector<vector<float>> &adjacencyMatrix) {
-    Graph::adjencyMatrix = adjacencyMatrix;
-}
-
-

@@ -32,13 +32,8 @@ public:
 
     void tsp(vector<bool>& v, int currPos,
                     int n, int count, int cost, float & ans);
-    /*void addTwoWayEdge(const Graph& edge);
-    int getNumVertices() const;
-    vector<Graph>& getEdges();
-    int getOrigin() const;
-    int getDestination() const;
-    float getDistance() const;*/
 
+    vector<int> tspTriangularApproximation(const Graph& graph);
 };
 
 
