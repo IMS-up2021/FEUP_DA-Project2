@@ -64,7 +64,7 @@ void Graph::tsp(vector<bool>& v, int currPos,
 };
 
 //function of Triangular Approximation Heuristic
-vector<int> Graph::tspTriangularApproximation(const Graph& graph){
+void Graph::tspTriangularApproximation(const Graph& graph){
     int numNodes = graph.getNumNodes();
 
     vector<int> tour;
@@ -90,78 +90,10 @@ vector<int> Graph::tspTriangularApproximation(const Graph& graph){
         visited[closest] = true;
     }
 
-    return tour;
+    // Print the tour
+    cout << "TSP Tour: ";
+    for (int node : tour) {
+        cout << node << " ";
+    }
+    cout << endl;
 }
-
-
-
-/*
-void tspBacktracking(const Graph& graph, vector<int>& path, vector<bool>& visited, int currVertex, int& minCost, int& numIterations){
-    int num Vertices = graph.getNumVertices();
-
-    if (numVisited == numVertices && graph.getDistance(currVertex, 0) > 0){
-        minCost = min(minCost, path[numVisited - 1] + graph.getDistance(currVertex,0));
-        numIterations++;
-        return;
-    }
-
-    for (int nextVertex = 0; nextVertex < numVertices; nextVertex++){
-        if(!visited[nextVertex] && graph.getDistance(currVertex, nextVertex) > 0){
-            visited[nextVertex] = true;
-            path[numVisited] = graph.getDistance(currVertex, nextVertex);
-            tspBacktracking(graph, path, visited, nextVertex, numVisited + 1, minCost, numIterations);
-            visited[nextVertex] = false;
-        }
-    }
-}*/
-
-/*int tspBacktrackingWrapper(const Graph& graph){
-    int numVertices = graph.getNumVertices();
-    vector<int> path(numVertices, 0);
-    vector<bool> visited(numVertices, false),
-    visited[0] = true; //Starting vertex is fixed
-
-    int minCost = INT_MAX;
-    int numIterations = 0;
-
-    tspBacktracking(graph, path, visited, 0, 1, minCost, numIterations);
-
-    cout << "Minimum Cost: " << minCost << endl;
-    cout << "Number of Iterations: " << numIterations << endl;
-
-    return minCost;
-}*/
-/*
-void tspTriangularApproximation(const Graph& graph) {
-    int numVertices = graph.getNumVertices();
-
-    std::vector<bool> visited(numVertices, false);
-    visited[0] = true;
-
-    int currVertex = 0;
-    int nextVertex = 0;
-    int minDistance = std::numeric_limits<int>::max();
-    int totalCost = 0;
-
-    std::cout << "Tour: " << currVertex << " -> ";
-
-    for (int i = 0; i < numVertices - 1; i++) {
-        for (int j = 0; j < numVertices; j++) {
-            if (!visited[j] && graph.getDistance(currVertex, j) < minDistance) {
-                minDistance = graph.getDistance(currVertex, j);
-                nextVertex = j;
-            }
-        }
-
-        std::cout << nextVertex << " -> ";
-        visited[nextVertex] = true;
-        totalCost += minDistance;
-        currVertex = nextVertex;
-        minDistance = std::numeric_limits<int>::max();
-    }
-
-    totalCost += graph.getDistance(currVertex, 0);
-    std::cout << "0" << std::endl;
-
-    std::cout << "Total Cost: " << totalCost << std::endl;
-}*/
