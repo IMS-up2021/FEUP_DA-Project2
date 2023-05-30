@@ -4,6 +4,7 @@
 #include <climits>
 #include "../header/CSVReader.h"
 #include <chrono>
+#include <iomanip>
 
 using namespace std;
 
@@ -33,7 +34,7 @@ void Algorithms::backtrackingTG(const string& filename) {
 
     // Output the minimum distance and execution time
     cout << "Minimum distance between all nodes: " << min << endl;
-    cout << "Execution time: " << executionTime << " seconds" << endl;
 
-
+    // Format and output the execution time with 2 decimal places
+    cout << "Execution time: " << fixed << setprecision(2) << executionTime << " seconds" << endl << endl;
 }
