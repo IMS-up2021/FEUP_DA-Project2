@@ -80,9 +80,9 @@ void Graph::tspTriangularApproximation(const Graph& graph){
         float minDist = numeric_limits<float>::infinity();
 
         for (int i = 0; i < numNodes; ++i) {
-            if (!visited[i] && graph.getAdjacencyMatrix()[current][i] < minDist) {
+            if (!visited[i] && graph.getAdjencyMatrix()[current][i] < minDist) {
                 closest = i;
-                minDist = graph.getAdjacencyMatrix()[current][i];
+                minDist = graph.getAdjencyMatrix()[current][i];
             }
         }
 
