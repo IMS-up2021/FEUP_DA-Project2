@@ -187,10 +187,10 @@ void Menu2(){
             case 0:
                 mainMenu();
             case 1:
-                Menu11();
+                Menu21();
                 break;
             case 2:
-                Menu12();
+                Menu22();
                 break;
             default:
                 cout << "Invalid Option! Please choose again." << endl;
@@ -258,31 +258,20 @@ void Menu22(){
                 break;
             case 1:
             {
-                Graph graph = Graph(0);
-                CSVReader::read_TG("../data/TG/shipping.csv", &graph);
-                // Boolean array to check if a node
-                // has been visited or not
-                int n = graph.getNumNodes();
-                vector<bool> v(n);
-                for (int i = 0; i < n; i++)
-                    v[i] = false;
-
-                // Mark 0th node as visited
-                v[0] = true;
-                float ans = INT_MAX;
-
-                // Find the minimum weight Hamiltonian Cycle
-                graph.tsp( v, 0, n, 1, 0, ans);
-
-                // ans is the minimum weight Hamiltonian Cycle
-                cout << ans;
+                string filename = "../data/TG/shipping.csv";
+                Algorithms::triangularapproximationTG(filename);
             }
                 break;
-            case 2:
-                // Handle case 2
+            case 2: {
+
+                string filename = "../data/TG/shipping.csv";
+                Algorithms::triangularapproximationTG(filename);
+            }
                 break;
-            case 3:
-                // Handle case 3
+            case 3: {
+                string filename = "../data/TG/tourism.csv";
+                Algorithms::triangularapproximationTG(filename);
+            }
                 break;
             default:
                 cout << "Invalid Option! Please choose again." << endl;

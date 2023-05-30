@@ -29,8 +29,7 @@ void Graph::addEdge(int src, int dest, int dist) {
 }
 
 // Function to find the minimum weight Hamiltonian Cycle
-void Graph::tsp(vector<bool>& v, int currPos,
-         int n, int count, int cost, float & ans)
+void Graph::tsp(vector<bool>& v, int currPos, int n, int count, int cost, float & ans)
 {
 
     // If last node is reached and it has a link

@@ -30,10 +30,9 @@ public:
 
     void addEdge(int src, int dest, int dist);
 
-    void tsp(vector<bool>& v, int currPos,
-                    int n, int count, int cost, float & ans);
+    void tsp(vector<bool>& v, int currPos, int n, int count, int cost, float & ans);
 
-    void tspTriangularApproximation(const Graph& graph);
+    static void tspTriangularApproximation(const Graph& graph);
 };
 
 

@@ -38,3 +38,10 @@ void Algorithms::backtrackingTG(const string& filename) {
     // Format and output the execution time with 2 decimal places
     cout << "Execution time: " << fixed << setprecision(2) << executionTime << " seconds" << endl << endl;
 }
+
+void Algorithms::triangularapproximationTG(const string& filename) {
+    // Create the graph and read the data
+    Graph graph = Graph(0);
+    CSVReader::read_TG(filename, &graph);
+    Graph::tspTriangularApproximation(graph);
+}

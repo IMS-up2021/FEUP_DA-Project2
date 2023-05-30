@@ -3,10 +3,13 @@
 
 #include <string>
 
+using namespace std;
+
 class Algorithms{
 
 public:
-    static void backtrackingTG(const std::string& filename);
+    static void backtrackingTG(const string& filename);
+    static void triangularapproximationTG(const string& filename);
 
 };
 
