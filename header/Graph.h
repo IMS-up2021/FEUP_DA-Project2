@@ -18,7 +18,6 @@ private:
     vector<vector<float >> adjacencyMatrix;
 
 public:
-    int getNumNodes() const;
 
     void setNumNodes(int numNodes);
 
@@ -30,9 +29,13 @@ public:
 
     void addEdge(int src, int dest, int dist);
 
+    float getWeight(int node1, int node2);
+
     void tsp(vector<bool>& v, int currPos, int n, int count, int cost, float & ans);
 
-    static void tspTriangularApproximation(const Graph& graph);
+    static void tspTriangularApproximation();
+
+    int getNumNodes();
 };
 
 
