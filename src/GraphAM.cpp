@@ -61,7 +61,9 @@ void GraphAM::tsp(vector<bool>& v, int currPos, int n, int count, int cost, floa
         }
     }
 };
-
+float GraphAM::getWeight(int node1, int node2) {
+    return adjacencyMatrix[node1][node2];
+}
 //function of Triangular Approximation Heuristic
 void GraphAM::tspTriangularApproximation(const GraphAM& graph){
     int numNodes = graph.getNumNodes();
