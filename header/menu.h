@@ -4,11 +4,12 @@
 void mainMenu();
 void Menu1();
 
-[[noreturn]] void Menu11();
+void Menu11();
 void Menu12();
+void Menu21();
+void Menu22();
 void Menu2();
 void Menu3();
 void Menu4();
-void Menu5();
 
 #endif
