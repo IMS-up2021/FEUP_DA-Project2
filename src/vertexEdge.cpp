@@ -75,3 +75,4 @@ void Edge::setSelected(bool selected) {
 void Edge::setReverse(Edge *reverse) {
     this->reverse = reverse;
 }
+
