@@ -32,7 +32,6 @@ public:
 
     void tsp(vector<bool>& v, int currPos, int n, int count, int cost, float & ans);
 
-    static void tspTriangularApproximation(const Graph& graph);
 };
 
 

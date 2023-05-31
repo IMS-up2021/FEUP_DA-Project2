@@ -45,3 +45,38 @@ void Algorithms::triangularapproximationTG(const string& filename) {
     CSVReader::read_TG(filename, &graph);
     Graph::tspTriangularApproximation(graph);
 }
+
+//function of Triangular Approximation Heuristic
+void Algorithms::tspTriangularApproximation(const Graph& graph){
+    int numNodes = graph.getNumNodes();
+
+    vector<int> tour;
+    // Start and end at the node with zero-identifier label
+    tour.push_back(0);
+
+    vector <bool> visited(numNodes, false);
+    visited[0] = true;
+
+    while (tour.size() < numNodes) {
+        int current = tour.back();
+        int closest = -1;
+        float minDist = numeric_limits<float>::infinity();
+
+        for (int i = 0; i < numNodes; ++i) {
+            if (!visited[i] && graph.getAdjacencyMatrix()[current][i] < minDist) {
+                closest = i;
+                minDist = graph.getAdjacencyMatrix()[current][i];
+            }
+        }
+
+        tour.push_back(closest);
+        visited[closest] = true;
+    }
+
+    // Print the tour
+    cout << "TSP Tour: ";
+    for (int node : tour) {
+        cout << node << " ";
+    }
+    cout << endl;
+}
