@@ -2,34 +2,34 @@
 // Created by nesma on 26/05/2023.
 //
 #include <bits/stdc++.h>
-#include "../header/Graph.h"
+#include "../header/GraphAM.h"
 using namespace std;
 
-Graph::Graph(int nodes) : numNodes(nodes), adjacencyMatrix(nodes, vector<float>(nodes, 0.0)) {}
+GraphAM::GraphAM(int nodes) : numNodes(nodes), adjacencyMatrix(nodes, vector<float>(nodes, 0.0)) {}
 
-int Graph::getNumNodes() const {
+int GraphAM::getNumNodes() const {
     return numNodes;
 }
 
-void Graph::setNumNodes(int numNodes) {
-    Graph::numNodes = numNodes;
+void GraphAM::setNumNodes(int numNodes) {
+    GraphAM::numNodes = numNodes;
 }
 
-const vector<vector<float>> &Graph::getAdjacencyMatrix() const {
+const vector<vector<float>> &GraphAM::getAdjacencyMatrix() const {
     return adjacencyMatrix;
 }
 
-void Graph::setAdjacencyMatrix(const vector<vector<float>> &adjacencyMatrix) {
-    Graph::adjacencyMatrix = adjacencyMatrix;
+void GraphAM::setAdjacencyMatrix(const vector<vector<float>> &adjacencyMatrix) {
+    GraphAM::adjacencyMatrix = adjacencyMatrix;
 }
 
-void Graph::addEdge(int src, int dest, int dist) {
+void GraphAM::addEdge(int src, int dest, int dist) {
     adjacencyMatrix[src][dest] = dist;
     adjacencyMatrix[dest][src] = dist;
 }
 
 // Function to find the minimum weight Hamiltonian Cycle
-void Graph::tsp(vector<bool>& v, int currPos, int n, int count, int cost, float & ans)
+void GraphAM::tsp(vector<bool>& v, int currPos, int n, int count, int cost, float & ans)
 {
 
     // If last node is reached and it has a link
@@ -63,7 +63,7 @@ void Graph::tsp(vector<bool>& v, int currPos, int n, int count, int cost, float 
 };
 
 //function of Triangular Approximation Heuristic
-void Graph::tspTriangularApproximation(const Graph& graph){
+void GraphAM::tspTriangularApproximation(const GraphAM& graph){
     int numNodes = graph.getNumNodes();
 
     vector<int> tour;

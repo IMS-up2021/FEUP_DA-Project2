@@ -2,8 +2,8 @@
 // Created by nesma on 26/05/2023.
 //
 
-#ifndef DA2_GRAPH_H
-#define DA2_GRAPH_H
+#ifndef DA2_GRAPHAM_H
+#define DA2_GRAPHAM_H
 
 #include <iostream>
 #include <vector>
@@ -11,7 +11,7 @@
 #include <chrono>
 
 using namespace std;
-class Graph {
+class GraphAM {
 private:
 
     int numNodes;
@@ -26,14 +26,14 @@ public:
 
     void setAdjacencyMatrix(const vector<vector<float>> &adjacencyMatrix);
 
-    explicit Graph(int numNodes);
+    explicit GraphAM(int numNodes);
 
     void addEdge(int src, int dest, int dist);
 
     void tsp(vector<bool>& v, int currPos, int n, int count, int cost, float & ans);
 
-    static void tspTriangularApproximation(const Graph& graph);
+    static void tspTriangularApproximation(const GraphAM& graph);
 };
 
 
-#endif //DA2_GRAPH_H
+#endif //DA2_GRAPHAM_H

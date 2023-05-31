@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "../header/menu.h"
 
 using namespace std;
