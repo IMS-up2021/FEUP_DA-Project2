@@ -13,6 +13,8 @@ public:
 
     static void triangularapproximationTG(const string& filename);
 
+    static void nearestNeighborTSP(const string& filename);
+
 };
 
 
