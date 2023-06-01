@@ -3,12 +3,12 @@
 
 CSVReader::CSVReader()= default;;
 
-void CSVReader::read_TG(const string& fileString, GraphAM *graph) {
+void CSVReader:: read_TG(const string& fileString, GraphAM *graph) {
     ifstream file(fileString);
     string line;
-
-    // Skip the header line
-    getline(file, line);
+    if(fileString[8]!='E'){
+        getline(file, line);// Skip the header line, but extra dnt have header
+    }
 
     unordered_set<int> nodes;
     int source, destination;
@@ -19,12 +19,15 @@ void CSVReader::read_TG(const string& fileString, GraphAM *graph) {
         string token;
 
         getline(ss, token, ',');
+
         source = stoi(token);
 
         getline(ss, token, ',');
+
         destination = stoi(token);
 
         getline(ss, token, ',');
+
         distance = stof(token);
 
         nodes.insert(source);

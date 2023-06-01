@@ -35,15 +35,10 @@ void Algorithms::backtrackingTG(const string& filename) {
     chrono::duration<double> duration = end - start;
     double executionTime = duration.count();
 
-    // Output the path
-    cout << "Path: ";
-    for (int node : path) {
-        cout << node << " ";
-    }
-    cout << endl;
+
 
     // Output the minimum distance and execution time
-    cout << "Distance for the PATH: " << min << endl;
+    cout << "Distance for the PATH exactly above: " << min << endl;
 
     // Format and output the execution time with 2 decimal places
     cout << "Execution time: " << fixed << setprecision(2) << executionTime << " seconds" << endl << endl;
