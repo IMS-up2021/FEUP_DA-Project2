@@ -76,7 +76,6 @@ void Algorithms::backtrackingRWG( string& filename) {
 
 }
 
-
 void Algorithms::triangularapproximationTG(const string& filename) {
     // Create the graph and read the data
     GraphAM graph = GraphAM(0);
@@ -100,13 +99,29 @@ void Algorithms::triangularapproximationTG(const string& filename) {
         int nextNode = -1;
         float minDistance = INT_MAX;
 
-        // Find the nearest unvisited neighbor with the minimum distance
+        // Find the unvisited neighbor with the minimum distance satisfying triangle inequalities
         for (int neighbor = 0; neighbor < numNodes; ++neighbor) {
             if (!visited[neighbor]) {
                 float distance = graph.getWeight(currentNode, neighbor);
                 if (distance < minDistance) {
-                    minDistance = distance;
-                    nextNode = neighbor;
+                    bool satisfiesTriangleInequalities = true;
+
+                    // Check triangle inequalities with all unvisited neighbors
+                    for (int unvisitedNeighbor : tour) {
+                        if (!visited[unvisitedNeighbor]) {
+                            float distanceToNeighbor = graph.getWeight(currentNode, unvisitedNeighbor);
+                            float distanceFromNeighbor = graph.getWeight(neighbor, unvisitedNeighbor);
+                            if (distanceToNeighbor + distanceFromNeighbor < distance) {
+                                satisfiesTriangleInequalities = false;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (satisfiesTriangleInequalities) {
+                        minDistance = distance;
+                        nextNode = neighbor;
+                    }
                 }
             }
         }
@@ -140,5 +155,75 @@ void Algorithms::triangularapproximationTG(const string& filename) {
     cout << endl;
     cout << "Distance of the Path: " << totalDistance << endl;
     cout << "Execution Time: " << fixed << setprecision(2) << executionTime << " seconds" << endl;
-
 }
+
+
+
+
+void Algorithms::nearestNeighborTSP(const string& filename) {
+    // Create the graph and read the data
+    GraphAM graph = GraphAM(0);
+    CSVReader::read_TG(filename, &graph);
+
+    int numNodes = graph.getNumNodes();
+
+    // Initialize variables
+    vector<bool> visited(numNodes, false);
+    vector<int> tour;
+    int startNode = 0;
+    visited[startNode] = true;
+    tour.push_back(startNode);
+
+    // Measure execution time
+    auto start = chrono::high_resolution_clock::now();
+
+    // Construct the approximate tour using the nearest neighbor heuristic
+    int currentNode = startNode;
+    while (tour.size() < numNodes) {
+        int nextNode = -1;
+        float minDistance = INT_MAX;
+
+        // Find the nearest unvisited neighbor with the minimum distance
+        for (int neighbor = 0; neighbor < numNodes; ++neighbor) {
+            if (!visited[neighbor]) {
+                float distance = graph.getWeight(currentNode, neighbor);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    nextNode = neighbor;
+                }
+            }
+        }
+
+        // Mark the next node as visited and add it to the tour
+        visited[nextNode] = true;
+        tour.push_back(nextNode);
+        currentNode = nextNode;
+    }
+
+    // Add the start node to complete the tour
+    tour.push_back(startNode);
+
+    // Calculate the total distance of the tour
+    float totalDistance = 0.0;
+    for (int i = 0; i < numNodes - 1; ++i) {
+        int currentNode = tour[i];
+        int nextNode = tour[i + 1];
+        totalDistance += graph.getWeight(currentNode, nextNode);
+    }
+
+    // Measure end execution time
+    auto end = chrono::high_resolution_clock::now();
+    chrono::duration<double> duration = end - start;
+    double executionTime = duration.count();
+
+    // Output the approximate tour, total distance, and execution time
+    cout << "Nearest Neighbor Path: ";
+    for (int node : tour) {
+        cout << node << " ";
+    }
+    cout << endl;
+    cout << "Distance of the Path: " << totalDistance << endl;
+    cout << "Execution Time: " << fixed << setprecision(2) << executionTime << " seconds" << endl;
+}
+
+

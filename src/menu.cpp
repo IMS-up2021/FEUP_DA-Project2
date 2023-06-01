@@ -319,7 +319,272 @@ void Menu22(){
 }
 
 void Menu3(){
+    int op;
+
+    cout << "+------------------------------------------------------------------------+" << endl;
+    cout << "|                            Other Heuristics                            |" << endl;
+    cout << "|                                Main Menu                               |" << endl;
+    cout << "+------------------------------------------------------------------------+" << endl;
+    cout << "|                                                                        |" << endl;
+    cout << "|  Option 1: Two Optimal Heuristic                                       |" << endl;
+    cout << "|  Option 2: Nearest Neighbour Heuristic                                 |" << endl;
+    cout << "|                                                                        |" << endl;
+    cout << "|  Option 0: Exit                                                        |" << endl;
+    cout << "+------------------------------------------------------------------------+" << endl;
+
+    while (true) {
+        cout << "Choose an Option between 0 and 3:" << endl;
+        cin >> op;
+        switch (op) {
+            case 0:
+                mainMenu();
+                break;
+            case 1: {
+                Menu31();
+            }
+                break;
+            case 2:{
+                Menu32();
+            }
+                break;
+            default:
+                cout << "Invalid Option! Please choose again." << endl;
+                break;
+        }
+    }
 }
+
+void Menu31(){
+    int op;
+
+    cout << "+------------------------------------------------------------------------+" << endl;
+    cout << "|                            Reading the Data                            |" << endl;
+    cout << "|                         Two Optimal Heuristic                          |" << endl;
+    cout << "+------------------------------------------------------------------------+" << endl;
+    cout << "|                                                                        |" << endl;
+    cout << "|  Option 1: Real-Word Graphs                                            |" << endl;
+    cout << "|  Option 2: Toy Graphs                                                  |" << endl;
+    cout << "|                                                                        |" << endl;
+    cout << "|  Option 0: Back                                                        |" << endl;
+    cout << "+------------------------------------------------------------------------+" << endl;
+
+    while (true) {
+        cout << "Choose an Option between 0 and 2:" << endl;
+        cin >> op;
+        switch (op) {
+            case 0:
+                mainMenu();
+            case 1:
+                Menu311();
+                break;
+            case 2:
+                Menu312();
+                break;
+            default:
+                cout << "Invalid Option! Please choose again." << endl;
+                break;
+        }
+    }
+}
+
+
+void Menu311(){
+    int op;
+
+    cout << "+------------------------------------------------------------------------+" << endl;
+    cout << "|                    Reading the Data - Real-World Graphs                |" << endl;
+    cout << "|                         Two Optimal Heuristic                          |" << endl;
+    cout << "+------------------------------------------------------------------------+" << endl;
+    cout << "|                                                                        |" << endl;
+    cout << "|  Option 1: GraphAM 1 (1k Nodes, 500 Edges)                             |" << endl;
+    cout << "|  Option 2: GraphAM 2 (5k Nodes, 3M  Edges)                             |" << endl;
+    cout << "|  Option 3: GraphAM 3 (10K Nodes, 10M Edges)                            |" << endl;
+    cout << "|                                                                        |" << endl;
+    cout << "|  Option 0: Exit                                                        |" << endl;
+    cout << "+------------------------------------------------------------------------+" << endl;
+
+    while (true) {
+        cout << "Choose an Option between 0 and 3:" << endl;
+        cin >> op;
+        switch (op) {
+            case 0:
+                mainMenu();
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                cout << "Invalid Option! Please choose again." << endl;
+                break;
+        }
+    }
+}
+
+void Menu312(){
+    int op;
+
+    cout << "+------------------------------------------------------------------------+" << endl;
+    cout << "|                      Reading the Data - Toy Graphs                     |" << endl;
+    cout << "|                         Two Optimal Heuristic                          |" << endl;
+    cout << "+------------------------------------------------------------------------+" << endl;
+    cout << "|                                                                        |" << endl;
+    cout << "|  Option 1: Shipping                                                    |" << endl;
+    cout << "|  Option 2: Stadiums                                                    |" << endl;
+    cout << "|  Option 3: Tourism                                                     |" << endl;
+    cout << "|                                                                        |" << endl;
+    cout << "|  Option 0: Exit                                                        |" << endl;
+    cout << "+------------------------------------------------------------------------+" << endl;
+
+    while (true) {
+        cout << "Choose an Option between 0 and 3:" << endl;
+        cin >> op;
+        switch (op) {
+            case 0:
+                mainMenu();
+                break;
+            case 1:
+            {
+                string filename = "../data/TG/shipping.csv";
+            }
+                break;
+            case 2: {
+
+                string filename = "../data/TG/shipping.csv";
+            }
+                break;
+            case 3: {
+                string filename = "../data/TG/tourism.csv";
+            }
+                break;
+            default:
+                cout << "Invalid Option! Please choose again." << endl;
+                break;
+        }
+    }
+
+}
+
+void Menu321(){
+    int op;
+
+    cout << "+------------------------------------------------------------------------+" << endl;
+    cout << "|                    Reading the Data - Real-World Graphs                |" << endl;
+    cout << "|                       Nearest Neighbour Heuristic                      |" << endl;
+    cout << "+------------------------------------------------------------------------+" << endl;
+    cout << "|                                                                        |" << endl;
+    cout << "|  Option 1: GraphAM 1 (1k Nodes, 500 Edges)                             |" << endl;
+    cout << "|  Option 2: GraphAM 2 (5k Nodes, 3M  Edges)                             |" << endl;
+    cout << "|  Option 3: GraphAM 3 (10K Nodes, 10M Edges)                            |" << endl;
+    cout << "|                                                                        |" << endl;
+    cout << "|  Option 0: Exit                                                        |" << endl;
+    cout << "+------------------------------------------------------------------------+" << endl;
+
+    while (true) {
+        cout << "Choose an Option between 0 and 3:" << endl;
+        cin >> op;
+        switch (op) {
+            case 0:
+                mainMenu();
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                cout << "Invalid Option! Please choose again." << endl;
+                break;
+        }
+    }
+}
+
+void Menu322(){
+    int op;
+
+    cout << "+------------------------------------------------------------------------+" << endl;
+    cout << "|                      Reading the Data - Toy Graphs                     |" << endl;
+    cout << "|                       Nearest Neighbour Heuristic                      |" << endl;
+    cout << "+------------------------------------------------------------------------+" << endl;
+    cout << "|                                                                        |" << endl;
+    cout << "|  Option 1: Shipping                                                    |" << endl;
+    cout << "|  Option 2: Stadiums                                                    |" << endl;
+    cout << "|  Option 3: Tourism                                                     |" << endl;
+    cout << "|                                                                        |" << endl;
+    cout << "|  Option 0: Exit                                                        |" << endl;
+    cout << "+------------------------------------------------------------------------+" << endl;
+
+    while (true) {
+        cout << "Choose an Option between 0 and 3:" << endl;
+        cin >> op;
+        switch (op) {
+            case 0:
+                mainMenu();
+                break;
+            case 1:
+            {
+                string filename = "../data/TG/shipping.csv";
+                Algorithms::nearestNeighborTSP(filename);
+            }
+                break;
+            case 2: {
+
+                string filename = "../data/TG/shipping.csv";
+                Algorithms::nearestNeighborTSP(filename);
+            }
+                break;
+            case 3: {
+                string filename = "../data/TG/tourism.csv";
+                Algorithms::nearestNeighborTSP(filename);
+            }
+                break;
+            default:
+                cout << "Invalid Option! Please choose again." << endl;
+                break;
+        }
+    }
+
+}
+
+void Menu32(){
+    int op;
+
+    cout << "+------------------------------------------------------------------------+" << endl;
+    cout << "|                            Reading the Data                            |" << endl;
+    cout << "|                       Nearest Neighbour Heuristic                      |" << endl;
+    cout << "+------------------------------------------------------------------------+" << endl;
+    cout << "|                                                                        |" << endl;
+    cout << "|  Option 1: Real-Word Graphs                                            |" << endl;
+    cout << "|  Option 2: Toy Graphs                                                  |" << endl;
+    cout << "|                                                                        |" << endl;
+    cout << "|  Option 0: Back                                                        |" << endl;
+    cout << "+------------------------------------------------------------------------+" << endl;
+
+    while (true) {
+        cout << "Choose an Option between 0 and 2:" << endl;
+        cin >> op;
+        switch (op) {
+            case 0:
+                mainMenu();
+            case 1:
+                Menu321();
+                break;
+            case 2:
+                Menu322();
+                break;
+            default:
+                cout << "Invalid Option! Please choose again." << endl;
+                break;
+        }
+    }
+}
+
+
+
+
 
 
 void Menu4(){
