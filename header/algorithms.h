@@ -2,7 +2,6 @@
 #define ALGORITHMS_H
 
 #include <string>
-#include "Graph.h"
 
 using namespace std;
 
@@ -13,7 +12,6 @@ public:
     static void backtrackingRWG(string& filename);
 
     static void triangularapproximationTG(const string& filename);
-    static void tspTriangularApproximation(const Graph& graph);
 
     static void nearestNeighborTSP(const string& filename);
 

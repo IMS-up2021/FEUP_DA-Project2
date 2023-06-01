@@ -64,7 +64,7 @@ void GraphAM::tsp(vector<bool>& v, int currPos, int n, int count, int cost, floa
 
 
 
-float GraphAM::getWeight(int node1, int node2) {
+float GraphAM::getWeight(int node1, int node2) const {
     return adjacencyMatrix[node1][node2];
 }
 

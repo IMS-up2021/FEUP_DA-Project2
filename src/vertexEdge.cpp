@@ -83,16 +83,4 @@ void Edge::setDist(double dist) {
     Edge::dist = dist;
 }
 
-<<<<<<< HEAD
-
-void Edge::setSelected(bool selected) {
-    this->selected = selected;
-}
-
-void Edge::setReverse(Edge *reverse) {
-    this->reverse = reverse;
-}
-
-=======
 Edge::Edge(Vertex *dest, double dist):dest(dest), dist(dist) {}
->>>>>>> 1d3e5711de9744cc8d1854da4e62dc06f014e8ee

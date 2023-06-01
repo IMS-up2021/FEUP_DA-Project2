@@ -30,9 +30,7 @@ public:
 
     void tsp(vector<bool> &v, int currPos, int n, int count, int cost, float &ans, vector<int> &path);
 
-    static void tspTriangularApproximation(const GraphAM &graph);
-
-    float getWeight(int node1, int node2);
+    float getWeight(int node1, int node2) const;
 
 };
 
