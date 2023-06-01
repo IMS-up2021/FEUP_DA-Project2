@@ -29,72 +29,41 @@ void GraphAM::addEdge(int src, int dest, int dist) {
 }
 
 // Function to find the minimum weight Hamiltonian Cycle
-void GraphAM::tsp(vector<bool>& v, int currPos, int n, int count, int cost, float & ans)
-{
-
-    // If last node is reached and it has a link
-    // to the starting node i.e the source then
-    // keep the minimum value out of the total cost
-    // of traversal and "ans"
-    // Finally return to check for more possible values
+void GraphAM::tsp(vector<bool>& v, int currPos, int n, int count, int cost, float& minDistance, vector<int>& path) {
+    // If last node is reached and there is a link to the starting node,
+    // update the minimum distance and store the path
     if (count == n && adjacencyMatrix[currPos][0]) {
-        float helper = (cost + adjacencyMatrix[currPos][0]);
-        ans = min(ans,  helper);
-
+        float totalDistance = cost + adjacencyMatrix[currPos][0];
+        if (totalDistance < minDistance) {
+            minDistance = totalDistance;
+            path.clear();  // Clear the path vector
+            for (int i = 0; i < n; ++i) {
+                if (v[i]) {
+                    path.push_back(i);  // Add the node to the path
+                }
+            }
+            path.push_back(0);  // Add the starting node to complete the path
+        }
         return;
     }
 
     // BACKTRACKING STEP
-    // Loop to traverse the adjacency list
-    // of currPos node and increasing the count
-    // by 1 and cost by adjencyMatrix[currPos][i] value
+    // Loop to traverse the adjacency matrix of currPos node and increase the count
+    // by 1 and cost by adjacencyMatrix[currPos][i] value
     for (int i = 0; i < n; i++) {
         if (!v[i] && adjacencyMatrix[currPos][i]) {
-
             // Mark as visited
             v[i] = true;
-            tsp( v, i, n, count + 1,
-                cost + adjacencyMatrix[currPos][i], ans);
+            tsp(v, i, n, count + 1, cost + adjacencyMatrix[currPos][i], minDistance, path);
 
-            // Mark ith node as unvisited
+            // Mark the current node as unvisited
             v[i] = false;
         }
     }
-};
+}
+
+
+
 float GraphAM::getWeight(int node1, int node2) {
     return adjacencyMatrix[node1][node2];
-}
-//function of Triangular Approximation Heuristic
-void GraphAM::tspTriangularApproximation(const GraphAM& graph){
-    int numNodes = graph.getNumNodes();
-
-    vector<int> tour;
-    // Start and end at the node with zero-identifier label
-    tour.push_back(0);
-
-    vector <bool> visited(numNodes, false);
-    visited[0] = true;
-
-    while (tour.size() < numNodes) {
-        int current = tour.back();
-        int closest = -1;
-        float minDist = numeric_limits<float>::infinity();
-
-        for (int i = 0; i < numNodes; ++i) {
-            if (!visited[i] && graph.getAdjacencyMatrix()[current][i] < minDist) {
-                closest = i;
-                minDist = graph.getAdjacencyMatrix()[current][i];
-            }
-        }
-
-        tour.push_back(closest);
-        visited[closest] = true;
-    }
-
-    // Print the tour
-    cout << "TSP Tour: ";
-    for (int node : tour) {
-        cout << node << " ";
-    }
-    cout << endl;
 }

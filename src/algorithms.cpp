@@ -8,6 +8,8 @@
 
 using namespace std;
 
+// Backtracking Heuristic for the Toy Graphs
+
 void Algorithms::backtrackingTG(const string& filename) {
     // Create the graph and read the data
     GraphAM graph = GraphAM(0);
@@ -16,6 +18,7 @@ void Algorithms::backtrackingTG(const string& filename) {
     // Initialize variables
     int n = graph.getNumNodes();
     vector<bool> v(n);
+    vector<int> path;  // Store the path
     for (int i = 0; i < n; i++)
         v[i] = false;
     v[0] = true;
@@ -24,39 +27,61 @@ void Algorithms::backtrackingTG(const string& filename) {
     // Measure execution time
     auto start = chrono::high_resolution_clock::now();
 
-    // Find the minimum weight Hamiltonian Cycle
-    graph.tsp(v, 0, n, 1, 0, min);
+    // Find the minimum weight Hamiltonian Cycle and store the path
+    graph.tsp(v, 0, n, 1, 0, min, path);
 
     // Calculate execution time
     auto end = chrono::high_resolution_clock::now();
     chrono::duration<double> duration = end - start;
     double executionTime = duration.count();
 
+    // Output the path
+    cout << "Path: ";
+    for (int node : path) {
+        cout << node << " ";
+    }
+    cout << endl;
+
     // Output the minimum distance and execution time
-    cout << "Minimum distance between all nodes and back to initial: " << min << endl;
+    cout << "Distance for the PATH: " << min << endl;
 
     // Format and output the execution time with 2 decimal places
     cout << "Execution time: " << fixed << setprecision(2) << executionTime << " seconds" << endl << endl;
 }
+
+
+// Backtracking Heuristic for the Real World Graph
+
 void Algorithms::backtrackingRWG( string& filename) {
     GraphAL graph = GraphAL();
     CSVReader::read_RWG(filename, &graph);
-// Initialize variables
+
+    // Initialize variables
     graph.setVisitedNode(0);
     float min = INT_MAX;
-// Measure execution time
+
+    // Measure execution time
     auto start = chrono::high_resolution_clock::now();
-// Find the minimum weight Hamiltonian Cycle
+
+    // Find the minimum weight Hamiltonian Cycle
     graph.tsp( 0, 1, 0, min);
-// Calculate execution time
+
+    // Calculate execution time
     auto end = chrono::high_resolution_clock::now();
+
     chrono::duration<double> duration = end - start;
+
     double executionTime = duration.count();
-// Output the minimum distance and execution time
-    cout << "Minimum distance between all nodes: " << min << endl;
-// Format and output the execution time with 2 decimal places
+    // Output the minimum distance and execution time
+
+    cout << "Distance for the PATH: " << min << endl;
+
+    // Format and output the execution time with 2 decimal places
     cout << "Execution time: " << fixed << setprecision(2) << executionTime << " seconds" << endl << endl;
+
 }
+
+
 void Algorithms::triangularapproximationTG(const string& filename) {
     // Create the graph and read the data
     GraphAM graph = GraphAM(0);
@@ -113,11 +138,12 @@ void Algorithms::triangularapproximationTG(const string& filename) {
     double executionTime = duration.count();
 
     // Output the approximate tour, total distance, and execution time
-    cout << "Approximate TSP Tour: ";
+    cout << "Triangular Approximation Path: ";
     for (int node : tour) {
         cout << node << " ";
     }
     cout << endl;
-    cout << "Total Distance: " << totalDistance << endl;
-    cout << "Execution Time: " << executionTime << " seconds" << endl;
+    cout << "Distance of the Path: " << totalDistance << endl;
+    cout << "Execution Time: " << fixed << setprecision(2) << executionTime << " seconds" << endl;
+
 }
