@@ -15,6 +15,8 @@ public:
     static void triangularapproximationTG(const string& filename);
     static void tspTriangularApproximation(const Graph& graph);
 
+    static void nearestNeighborTSP(const string& filename);
+
 };
 
 
