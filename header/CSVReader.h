@@ -13,7 +13,8 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include "Graph.h"
+#include "GraphAM.h"
+#include "GraphAL.h"
 
 using namespace std;
 
@@ -21,8 +22,8 @@ using namespace std;
 class CSVReader {
 public:
     CSVReader();
-    static void read_TG(string file, Graph* graph);
-    static void read_RWG(string &file, Graph* graph);
+    static void read_TG(const string& file, GraphAM* graph);
+    static void read_RWG(string &file, GraphAL* graph);
 
 };
 

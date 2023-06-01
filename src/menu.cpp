@@ -92,9 +92,10 @@ void Menu11(){
     cout << "|                          Backtracking Heuristic                        |" << endl;
     cout << "+------------------------------------------------------------------------+" << endl;
     cout << "|                                                                        |" << endl;
-    cout << "|  Option 1: Graph 1 (1k Nodes, 500 Edges)                               |" << endl;
-    cout << "|  Option 2: Graph 2 (5k Nodes, 3M  Edges)                               |" << endl;
-    cout << "|  Option 3: Graph 3 (10K Nodes, 10M Edges)                              |" << endl;
+    cout << "|  Option 1: GraphAM 1 (1k Nodes, 500 Edges)                             |" << endl;
+    cout << "|  Option 2: GraphAM 2 (5k Nodes, 3M  Edges)                             |" << endl;
+    cout << "|  Option 3: GraphAM 3 (10K Nodes, 10M Edges)                            |" << endl;
+    cout << "|  Option 4: GraphMade (TOY GRAPH)                                       |" << endl;
     cout << "|                                                                        |" << endl;
     cout << "|  Option 0: Exit                                                        |" << endl;
     cout << "+------------------------------------------------------------------------+" << endl;
@@ -107,10 +108,28 @@ void Menu11(){
                 mainMenu();
                 break;
             case 1:
+            {
+                /*GraphAL graphAl;
+                string filename = "../data/RWG/graph1/";
+                CSVReader::read_RWG(filename, &graphAl);*/
+                string filename = "../data/RWG/graphMade/";
+                Algorithms::backtrackingRWG(filename);
+            }
                 break;
             case 2:
+                // Add code for case 2
                 break;
             case 3:
+                // Add code for case 3
+                break;
+            case 4:
+            {
+                /*GraphAL graphAl = GraphAL();
+                string filename = "../data/RWG/graphMade/";
+                CSVReader::read_RWG(filename, &graphAl);*/
+                string filename = "../data/RWG/graphMade/";
+                Algorithms::backtrackingRWG(filename);
+            }
                 break;
             default:
                 cout << "Invalid Option! Please choose again." << endl;
@@ -207,9 +226,9 @@ void Menu21(){
     cout << "|                     Triangular Approximation Heuristic                 |" << endl;
     cout << "+------------------------------------------------------------------------+" << endl;
     cout << "|                                                                        |" << endl;
-    cout << "|  Option 1: Graph 1 (1k Nodes, 500 Edges)                               |" << endl;
-    cout << "|  Option 2: Graph 2 (5k Nodes, 3M  Edges)                               |" << endl;
-    cout << "|  Option 3: Graph 3 (10K Nodes, 10M Edges)                              |" << endl;
+    cout << "|  Option 1: GraphAM 1 (1k Nodes, 500 Edges)                               |" << endl;
+    cout << "|  Option 2: GraphAM 2 (5k Nodes, 3M  Edges)                               |" << endl;
+    cout << "|  Option 3: GraphAM 3 (10K Nodes, 10M Edges)                              |" << endl;
     cout << "|                                                                        |" << endl;
     cout << "|  Option 0: Exit                                                        |" << endl;
     cout << "+------------------------------------------------------------------------+" << endl;

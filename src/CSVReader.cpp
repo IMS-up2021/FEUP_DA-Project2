@@ -1,13 +1,9 @@
-//
-// Created by nesma on 18/05/2023.
-//
 
 #include "../header/CSVReader.h"
-#include "../header/Graph.h"
 
 CSVReader::CSVReader()= default;;
 
-void CSVReader::read_TG(string fileString, Graph *graph) {
+void CSVReader::read_TG(const string& fileString, GraphAM *graph) {
     ifstream file(fileString);
     string line;
 
@@ -36,7 +32,7 @@ void CSVReader::read_TG(string fileString, Graph *graph) {
     }
 
     int numNodes = nodes.size();
-    *graph = Graph(numNodes);
+    *graph = GraphAM(numNodes);
 
     file.clear();
     file.seekg(0);  // Reset file pointer to read again from the beginning
@@ -61,40 +57,67 @@ void CSVReader::read_TG(string fileString, Graph *graph) {
     }
 }
 
-/*void CSVReader::read_RWG(const string& file, Graph* graph) {
-    ifstream in;
-    in.open(file);
-    static string line;
-    getline(in, line);
-
-    while (getline(in, line)) {
-        string origStr;
-        string destStr;
-        string distStr;
-
-        stringstream inputString(line);
-
-        getline(inputString, origStr, ',');
-        getline(inputString, destStr, ',');
-        getline(inputString, distStr, ',');
-
-        int orig = stoi(origStr);
-        int dest = stoi(destStr);
-        double dist = stod(distStr);
-
-        Vertex* origVertex = graph->getVertex(orig);
-        if (origVertex == nullptr) {
-            origVertex = new Vertex(orig);
-            graph->addVertex(origVertex);
-        }
-        Vertex* destVertex = graph->getVertex(dest);
-        if (destVertex == nullptr) {
-            destVertex = new Vertex(dest);
-            graph->addVertex(destVertex);
-        }
-
-        Edge* edge = origVertex->addEdge(destVertex, dist);
+void populateNodes(GraphAL& graph, const string& nodesFile) {
+    ifstream file(nodesFile);
+    if (!file.is_open()) {
+        cout << "Error opening file: " << nodesFile << endl;
+        return;
     }
 
-    in.close();
-}*/
+    string line;
+    getline(file, line); // Skip the header line
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+        string idStr, lgStr, latStr;
+        getline(ss, idStr, ',');
+        getline(ss, lgStr, ',');
+        getline(ss, latStr, ',');
+
+        int id = stoi(idStr);
+        double lg = stod(lgStr);
+        double lat = stod(latStr);
+
+        graph.addNode(id, lg, lat);
+    }
+
+    file.close();
+}
+// Function to parse the edges.csv file and populate the graph edges
+void populateEdges(GraphAL& graph, const string& edgesFile) {
+    ifstream file(edgesFile);
+    if (!file.is_open()) {
+        cout << "Error opening file: " << edgesFile << endl;
+        return;
+    }
+
+    string line;
+    getline(file, line); // Skip the header line
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+        string origemStr, destinoStr, distanciaStr;
+        getline(ss, origemStr, ',');
+        getline(ss, destinoStr, ',');
+        getline(ss, distanciaStr, ',');
+
+        int origem = stoi(origemStr);
+        int destino = stoi(destinoStr);
+        double distancia = stod(distanciaStr);
+        Edge edge = Edge(graph.getVertexAt(destino),distancia);
+        graph.addEdgetoAdj(edge,origem);
+        Edge edge1 = Edge(graph.getVertexAt(origem),distancia);
+        graph.addEdgetoAdj(edge1,destino);
+    }
+
+    file.close();
+}
+
+
+void CSVReader::read_RWG(string &file, GraphAL *graph) {
+    populateNodes(*graph,file +"nodes.csv");
+    populateEdges(*graph,file + "edges.csv");
+
+}
+
+

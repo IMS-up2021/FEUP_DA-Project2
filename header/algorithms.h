@@ -10,6 +10,8 @@ class Algorithms{
 
 public:
     static void backtrackingTG(const string& filename);
+    static void backtrackingRWG(string& filename);
+
     static void triangularapproximationTG(const string& filename);
     static void tspTriangularApproximation(const Graph& graph);
 

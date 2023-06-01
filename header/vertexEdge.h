@@ -20,7 +20,7 @@ public:
     Vertex(int id, double lg , double lat);
 
 
-    vector<Edge *> getAdj() const;
+    vector<Edge > getAdj() const;
     bool isVisited() const;
     int getID() const;
     double getLG() const;
@@ -29,7 +29,21 @@ public:
 
 
     void setVisited(bool visited);
-    Edge * addEdge( Vertex *dest, double dist);
+    void addEdge( Edge edge );
+
+    int getId() const;
+
+    void setId(int id);
+
+    double getLg() const;
+
+    void setLg(double lg);
+
+    double getLat() const;
+
+    void setLat(double lat);
+
+    void setAdj(const vector<Edge > &adj);
 
     /**friend class MutablePriorityQueue<Vertex>;**/
 protected:
@@ -37,44 +51,30 @@ protected:
     int id;
     double lg;
     double lat;
-    vector<Edge *> adj;  // outgoing edges
+    vector<Edge > adj;  // outgoing edges
 
 
     // auxiliary fields
-    bool visited = false; // used by DFS, BFS, Prim ...
-    Edge *path = nullptr;
-
-    vector<Edge *> incoming; // incoming edges
-
-    int queueIndex = 0; 		// required by MutablePriorityQueue and UFDS
+    bool visited = false;
 };
 
 /********************** Edge  ****************************/
 
 class Edge {
 public:
-    Edge(Vertex *orig, Vertex *dest, double dist);
+    Edge( Vertex *dest, double dist);
 
-    Vertex * getOrig() const;
     Vertex * getDest() const;
     double getDist() const;
-    bool isSelected() const;
-    Edge *getReverse() const;
 
-    void setSelected(bool selected);
-    void setReverse(Edge *reverse);
+
+    void setDest(Vertex *dest);
+
+    void setDist(double dist);
+
 protected:
-    Vertex *orig;
     Vertex *dest;
     double dist;
-
-
-    // auxiliary fields
-    bool selected = false;
-
-    // used for bidirectional edges
-    Edge *reverse = nullptr;
-
 
 };
 
