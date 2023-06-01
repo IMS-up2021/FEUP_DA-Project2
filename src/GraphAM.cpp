@@ -32,18 +32,22 @@ void GraphAM::addEdge(int src, int dest, int dist) {
 void GraphAM::tsp(vector<bool>& v, int currPos, int n, int count, int cost, float& minDistance, vector<int>& path) {
     // If last node is reached and there is a link to the starting node,
     // update the minimum distance and store the path
+    path.push_back(currPos);
     if (count == n && adjacencyMatrix[currPos][0]) {
         float totalDistance = cost + adjacencyMatrix[currPos][0];
+        path.push_back(0);
         if (totalDistance < minDistance) {
             minDistance = totalDistance;
-            path.clear();  // Clear the path vector
-            for (int i = 0; i < n; ++i) {
-                if (v[i]) {
-                    path.push_back(i);  // Add the node to the path
-                }
+            // Output the path
+            cout << "Path: ";
+            for (int node : path) {
+                cout << node << " ";
             }
-            path.push_back(0);  // Add the starting node to complete the path
+            cout << endl;
+
+
         }
+        path.pop_back();
         return;
     }
 
@@ -55,7 +59,7 @@ void GraphAM::tsp(vector<bool>& v, int currPos, int n, int count, int cost, floa
             // Mark as visited
             v[i] = true;
             tsp(v, i, n, count + 1, cost + adjacencyMatrix[currPos][i], minDistance, path);
-
+            path.pop_back();
             // Mark the current node as unvisited
             v[i] = false;
         }

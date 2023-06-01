@@ -60,7 +60,7 @@ void Menu1(){
     cout << "+------------------------------------------------------------------------+" << endl;
     cout << "|                                                                        |" << endl;
     cout << "|  Option 1: Real-Word Graphs                                            |" << endl;
-    cout << "|  Option 2: Toy Graphs                                                  |" << endl;
+    cout << "|  Option 2: Toy Graphs and Extra                                        |" << endl;
     cout << "|                                                                        |" << endl;
     cout << "|  Option 0: Back                                                        |" << endl;
     cout << "+------------------------------------------------------------------------+" << endl;
@@ -112,7 +112,7 @@ void Menu11(){
                 /*GraphAL graphAl;
                 string filename = "../data/RWG/graph1/";
                 CSVReader::read_RWG(filename, &graphAl);*/
-                string filename = "../data/RWG/graphMade/";
+                string filename = "../data/RWG/graph1/";
                 Algorithms::backtrackingRWG(filename);
             }
                 break;
@@ -149,12 +149,15 @@ void Menu12(){
     cout << "|  Option 1: Shipping                                                    |" << endl;
     cout << "|  Option 2: Stadiums                                                    |" << endl;
     cout << "|  Option 3: Tourism                                                     |" << endl;
+    cout << "|  Option 4: edges_25                                                    |" << endl;
+    cout << "|  Option 5: edges_50                                                    |" << endl;
+    cout << "|  Option 6: edges_75                                                    |" << endl;
     cout << "|                                                                        |" << endl;
     cout << "|  Option 0: Exit                                                        |" << endl;
     cout << "+------------------------------------------------------------------------+" << endl;
 
     while (true) {
-        cout << "Choose an Option between 0 and 3:" << endl;
+        cout << "Choose an Option between 0 and 6:" << endl;
         cin >> op;
         switch (op) {
             case 0:
@@ -172,6 +175,21 @@ void Menu12(){
                 break;
             case 3:{
                 string filename = "../data/TG/tourism.csv";
+                Algorithms::backtrackingTG(filename);
+            }
+                break;
+            case 4:{
+                string filename = "../data/Extra_Fully_Connected_Graphs/edges_25.csv";
+                Algorithms::backtrackingTG(filename);
+            }
+                break;
+            case 5:{
+                string filename = "../data/Extra_Fully_Connected_Graphs/edges_50.csv";
+                Algorithms::backtrackingTG(filename);
+            }
+                break;
+            case 6:{
+                string filename = "../data/Extra_Fully_Connected_Graphs/edges_75.csv";
                 Algorithms::backtrackingTG(filename);
             }
                 break;
