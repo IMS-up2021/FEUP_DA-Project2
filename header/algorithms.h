@@ -15,6 +15,7 @@ public:
 
     static void nearestNeighborTSP(const string& filename);
 
+    static void triangularapproximationRWG(const string &filename);
 };
 
 

@@ -14,7 +14,6 @@
 #include <vector>
 #include <algorithm>
 #include "GraphAM.h"
-#include "GraphAL.h"
 
 using namespace std;
 
@@ -23,7 +22,7 @@ class CSVReader {
 public:
     CSVReader();
     static void read_TG(const string& file, GraphAM* graph);
-    static void read_RWG(string &file, GraphAL* graph);
+    static void read_RWG(string &file, GraphAM* graph);
 
 };
 

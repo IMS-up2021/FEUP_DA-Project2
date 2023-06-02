@@ -15,7 +15,7 @@ void GraphAM::setNumNodes(int numNodes) {
     GraphAM::numNodes = numNodes;
 }
 
-const vector<vector<float>> &GraphAM::getAdjacencyMatrix() const {
+vector<vector<float>> GraphAM::getAdjacencyMatrix() const {
     return adjacencyMatrix;
 }
 
@@ -32,6 +32,7 @@ void GraphAM::addEdge(int src, int dest, int dist) {
 void GraphAM::tsp(vector<bool>& v, int currPos, int n, int count, int cost, float& minDistance, vector<int>& path) {
     // If last node is reached and there is a link to the starting node,
     // update the minimum distance and store the path
+    //cout<<"here\n";
     path.push_back(currPos);
     if (count == n && adjacencyMatrix[currPos][0]) {
         float totalDistance = cost + adjacencyMatrix[currPos][0];

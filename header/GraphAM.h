@@ -20,7 +20,7 @@ public:
 
     void setNumNodes(int numNodes);
 
-    const vector<vector<float>> &getAdjacencyMatrix() const;
+    vector<vector<float>> getAdjacencyMatrix() const;
 
     void setAdjacencyMatrix(const vector<vector<float>> &adjacencyMatrix);
 
