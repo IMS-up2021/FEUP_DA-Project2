@@ -21,27 +21,16 @@ for this project are both a description of an algorithm and its implementation a
 
 _________________________________________________________________________________________
 
-
-## How it works:
-
-_________________________________________________________________________________________
-
 ## How to use:
 
 ### Runing the Program in CLion (Recommended):
 
--Open your C++ project in CLion;
--Ensure that your C++ file is open in the editor;
--Click on the green "Run" button in the toolbar, or select "Run" from the "Run" menu at the top of the window;
--If this is the first time you are running the project, you will need to set up a run configuration. Choose the appropriate target from the "Run/Debug Configuration" drop-down list and configure the settings as needed;
--Once the run configuration is set up, click on the green "Run" button again or select "Run" from the "Run" menu to run the code.
+- Open your C++ project in CLion;
+- Ensure that your C++ file is open in the editor;
+- Click on the green "Run" button in the toolbar, or select "Run" from the "Run" menu at the top of the window;
+- If this is the first time you are running the project, you will need to set up a run configuration. Choose the appropriate target from the "Run/Debug Configuration" drop-down list and configure the settings as needed;
+- Once the run configuration is set up, click on the green "Run" button again or select "Run" from the "Run" menu to run the code.
 
-_________________________________________________________________________________________
-
-## Important Notes:
-
-All algorithms were successfully designed.
-To help create the system functionalities, we use the algorithms:
 _________________________________________________________________________________________
 
 ## Requirements
